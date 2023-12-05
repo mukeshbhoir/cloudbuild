@@ -3,8 +3,8 @@ provider "google" {
   region  = "asia-south1"
 }
 
-resource "google_compute_network" "Terraform_network" {
-  name                    = "Terraform-vpc"
+resource "google_compute_network" "terraform_network" {
+  name                    = "terraform-network"
   auto_create_subnetworks = "false"
   description             = "This is Testing Vpc"
 }
@@ -12,19 +12,18 @@ resource "google_compute_network" "Terraform_network" {
 resource "google_compute_subnetwork" "mum-subnet-1" {
   name          = "mumbai-subnet-1"
   ip_cidr_range = "200.0.1.0/24"
-  region        = "asia-south1-a"
-  network       = google_compute_network.vpc_network.id
+  region        = "asia-south1"
+  network       = google_compute_network.terraform_network.id
 }
-  resource "google_compute_subnetwork" "subnet-2" {
+  resource "google_compute_subnetwork" "delhi-subnet-1" {
   name          = "delhi-subnet"
   ip_cidr_range = "200.0.2.0/24"
-  region        = "asia-south1-b"
-  network       = google_compute_network.vpc_network.id
+  region        = "asia-south2"
+  network       = google_compute_network.terraform_network.id
 }
 resource "google_compute_firewall" "allow-ssh" {
   name    = "allow-ssh"
-  project = "devops-counsel-demo"
-  network = google_compute_network.vpc_network.id
+  network       = google_compute_network.terraform_network.id
   allow {
     protocol = "tcp"
     ports    = ["22"]
@@ -33,8 +32,7 @@ resource "google_compute_firewall" "allow-ssh" {
 }
 resource "google_compute_firewall" "allow-internal" {
   name    = "allow-internal"
-  project = "devops-counsel-demo"
-  network = google_compute_network.vpc_network.id
+  network       = google_compute_network.terraform_network.id
   allow {
     protocol = "tcp"
     ports    = ["1-65535"]
@@ -48,4 +46,66 @@ resource "google_compute_firewall" "allow-internal" {
   }
   source_ranges = ["200.0.0.0/24", "200.0.1.0/24" ]
 }
+
+##VM CREATION###
+
+resource "google_compute_address" "static" {
+  name = "ipv4-address"
+}
+
+
+resource "google_compute_instance" "computevm1" {
+  name                      = "test-vm1"
+  zone                      = "asia-south1-a"
+  machine_type              = "e2-micro"
+
+  network_interface {
+    network = "terraform-network"
+    subnetwork = "mumbai-subnet-1"
+    network_ip = "200.0.1.10"
+    access_config {
+    nat_ip = google_compute_address.static.address
+    }
+  }
+  boot_disk {
+    initialize_params {
+      image = "centos-cloud/centos-7"
+      size  = 20
+    }
+  }
+}
+
+
+#provider "google" {
+#  project = "corded-shift-399205"
+#  region  = "asia-south1"
+#}
+resource "google_compute_address" "static2" {
+  name = "ipv4-address2"
+  region  = "asia-south2"
+}
+
+resource "google_compute_instance" "computevm2" {
+  name                      = "test-vm2"
+  zone                      = "asia-south2-a"
+  machine_type              = "e2-micro"
+
+  network_interface {
+    network = "terraform-network"
+    subnetwork = "delhi-subnet"
+    network_ip = "200.0.2.10"
+    access_config {
+    nat_ip = google_compute_address.static2.address
+    }
+  }
+  boot_disk {
+    initialize_params {
+      image = "centos-cloud/centos-7"
+      size  = 20
+    }
+  }
+}
+
+
+
 
