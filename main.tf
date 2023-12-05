@@ -1,3 +1,8 @@
+provider "google" {
+  project = "corded-shift-399205"
+  region  = "asia-south1"
+}
+
 resource "google_compute_network" "Terraform_network" {
   name                    = "Terraform-vpc"
   auto_create_subnetworks = "false"
