@@ -1,3 +1,5 @@
+#! /usr/bin/env blah
+
 provider "google" {
   project = "corded-shift-399205"
   region  = "asia-south1"
