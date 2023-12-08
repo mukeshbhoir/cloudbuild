@@ -1,7 +1,6 @@
-resources:
-- type: compute.v1.instance
-  name: test-vm
-  properties:
+steps:
+  - name: test-vm
+    properties:
     zone: asia-south1-a
     machineType: https://www.googleapis.com/compute/v1/projects/corded-shift-399205/zones/asia-south1-a/machineTypes/e2-micro
     disks:
