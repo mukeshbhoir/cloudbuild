@@ -3,11 +3,11 @@ steps:
     properties:
      zone: asia-south1-a
      machineType: https://www.googleapis.com/compute/v1/projects/corded-shift-399205/zones/asia-south1-a/machineTypes/e2-micro
-     disks:
-    - deviceName: boot
-      type: PERSISTENT
-      boot: true
-      autoDelete: true
+      disks:
+      - deviceName: boot
+        type: PERSISTENT
+        boot: true
+        autoDelete: true
       initializeParams:
         sourceImage: https://www.googleapis.com/compute/v1/projects/centos-cloud/global/images/family/centos-7
     networkInterfaces:
