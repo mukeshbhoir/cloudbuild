@@ -8,7 +8,7 @@ resource "google_compute_network" "terraform_network" {
   auto_create_subnetworks = "false"
   description             = "This is Testing Vpc"
 }
-        
+
 resource "google_compute_subnetwork" "mum-subnet-1" {
   name          = "mumbai-subnet-1"
   ip_cidr_range = "200.0.1.0/24"
@@ -47,8 +47,6 @@ resource "google_compute_firewall" "allow-internal" {
   source_ranges = ["200.0.0.0/24", "200.0.1.0/24" ]
 }
 
-##VM CREATION###
-
 resource "google_compute_address" "static" {
   name = "ipv4-address"
 }
@@ -74,38 +72,4 @@ resource "google_compute_instance" "computevm1" {
     }
   }
 }
-
-
-#provider "google" {
-#  project = "corded-shift-399205"
-#  region  = "asia-south1"
-#}
-resource "google_compute_address" "static2" {
-  name = "ipv4-address2"
-  region  = "asia-south2"
-}
-
-resource "google_compute_instance" "computevm2" {
-  name                      = "test-vm2"
-  zone                      = "asia-south2-a"
-  machine_type              = "e2-micro"
-
-  network_interface {
-    network = "terraform-network"
-    subnetwork = "delhi-subnet"
-    network_ip = "200.0.2.10"
-    access_config {
-    nat_ip = google_compute_address.static2.address
-    }
-  }
-  boot_disk {
-    initialize_params {
-      image = "centos-cloud/centos-7"
-      size  = 20
-    }
-  }
-}
-
-
-
 
