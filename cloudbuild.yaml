@@ -18,5 +18,5 @@ steps:
   env:
     - "TF_VAR_project-name=${PROJECT_ID}"
 substitutions:
-    _BUCKET: # Provide your own bucket name
+    _BUCKET: terraformbuckettest
 tags: ['cloud-builders-community']
