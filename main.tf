@@ -47,7 +47,7 @@ resource "google_compute_firewall" "allow-internal" {
   source_ranges = ["200.0.0.0/24", "200.0.1.0/24" ]
 }
 
-resource "google_compute_address" "static" {
+resource "google_compute_address" "ephemeral" {
   name = "ipv4-address"
 }
 
@@ -62,7 +62,7 @@ resource "google_compute_instance" "computevm1" {
     subnetwork = "mumbai-subnet-1"
     network_ip = "200.0.1.10"
     access_config {
-    nat_ip = google_compute_address.static.address
+    nat_ip = google_compute_address.ephemeral.address
     }
   }
   boot_disk {
