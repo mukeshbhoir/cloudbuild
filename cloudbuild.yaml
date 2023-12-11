@@ -5,11 +5,11 @@ steps:
     '-backend-config=bucket=${_BUCKET}']
   env:
     - "TF_VAR_project-name=${PROJECT_ID}"
-- name: 'hashicorp/terraform:1.0.0' 
+  - name: 'hashicorp/terraform:1.0.0' 
   args: ['plan']
   env:
     - "TF_VAR_project-name=${PROJECT_ID}"
-- name: 'hashicorp/terraform:1.0.0'
+  - name: 'hashicorp/terraform:1.0.0'
   args: ['apply']
   env:
     - "TF_VAR_project-name=${PROJECT_ID}"
