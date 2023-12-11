@@ -1,18 +1,18 @@
 steps:
   - name: 'hashicorp/terraform:1.0.0'
     args: ['init',
-     '-backend-config=project=${PROJECT_ID}',
-     '-backend-config=bucket=${_BUCKET}']
+     '-backend-config=project=corded-shift-399205',
+     '-backend-config=bucket=terraformbuckettest']
     env:
-    - "TF_VAR_project-name=${PROJECT_ID}"
+    - "TF_VAR_project-name=corded-shift-399205"
   - name: 'hashicorp/terraform:1.0.0'
     args: ['plan']
     env:
-    - "TF_VAR_project-name=${PROJECT_ID}"
+    - "TF_VAR_project-name=corded-shift-399205"
   - name: 'hashicorp/terraform:1.0.0'
     args: ['apply']
     env:
-    - "TF_VAR_project-name=${PROJECT_ID}"
+    - "TF_VAR_project-name=corded-shift-399205"
 substitutions:
     _BUCKET: terraformbuckettest
 tags: ['cloud-builders-community']
