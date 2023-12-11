@@ -1,16 +1,16 @@
 steps:
-- name: 'gcr.io/${PROJECT_ID}/terraform'
+  - name: 'hashicorp/terraform:1.0.0'
   args: ['init',
     '-backend-config=project=${PROJECT_ID}',
     '-backend-config=bucket=${_BUCKET}']
   env:
     - "TF_VAR_project-name=${PROJECT_ID}"
-- name: 'gcr.io/${PROJECT_ID}/terraform'
+- name: 'hashicorp/terraform:1.0.0' 
   args: ['plan']
   env:
     - "TF_VAR_project-name=${PROJECT_ID}"
-- name: 'gcr.io/${PROJECT_ID}/terraform'
-  args: ['apply', '-auto-approve']
+- name: 'hashicorp/terraform:1.0.0'
+  args: ['apply']
   env:
     - "TF_VAR_project-name=${PROJECT_ID}"
 substitutions:
