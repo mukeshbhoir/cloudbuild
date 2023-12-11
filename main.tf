@@ -49,8 +49,9 @@ resource "google_compute_firewall" "allow-internal" {
 
 ##VM CREATION###
 
-resource "google_compute_address" "ephemeral" {
+resource "google_compute_address" "static1" {
   name = "ipv4-address"
+  region  = "asia-south1"
 }
 
 
@@ -64,7 +65,7 @@ resource "google_compute_instance" "computevm1" {
     subnetwork = "mumbai-subnet-1"
     network_ip = "200.0.1.10"
     access_config {
-    nat_ip = google_compute_address.ephemeral.address
+    nat_ip = google_compute_address.static1.address
     }
   }
   boot_disk {
