@@ -1,8 +1,6 @@
 steps:
   - name: 'hashicorp/terraform:1.0.0'
-    args: ['init',
-     '-backend-config=project=corded-shift-399205',
-     '-backend-config=bucket=terraformbuckettest']
+    args: ['init']
     env:
     - "TF_VAR_project-name=corded-shift-399205"
   - name: 'hashicorp/terraform:1.0.0'
