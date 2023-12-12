@@ -2,10 +2,6 @@ steps:
   - name: 'hashicorp/terraform:1.6.3'
     args: ['init']
   - name: 'hashicorp/terraform:1.6.3'
-    args: ['fmt']
-  - name: 'hashicorp/terraform:1.6.3'
-    args: ['refresh']
-  - name: 'hashicorp/terraform:1.6.3'
     args: ['plan', '-out=tfplan']
   - name: 'hashicorp/terraform:1.6.3'
     args: ['apply', '-auto-approve']
