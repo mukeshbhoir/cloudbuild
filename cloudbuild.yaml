@@ -1,13 +1,13 @@
 steps:
-  - name: 'hashicorp/terraform:1.0.0'
+  - name: 'hashicorp/terraform:1.6.3'
     args: ['init']
     env:
     - "TF_VAR_project-name=corded-shift-399205"
-  - name: 'hashicorp/terraform:1.0.0'
+  - name: 'hashicorp/terraform:1.6.3'
     args: ['plan', '-out=tfplan']
     env:
     - "TF_VAR_project-name=corded-shift-399205"
-  - name: 'hashicorp/terraform:1.0.0'
+  - name: 'hashicorp/terraform:1.6.3'
     args: ['apply', 'tfplan' ]
     env:
     - "TF_STATE_OUT=cloudbuild.tfstate"
