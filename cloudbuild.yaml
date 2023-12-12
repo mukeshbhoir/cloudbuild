@@ -5,12 +5,10 @@ steps:
     - "TF_VAR_project-name=corded-shift-399205"
   - name: 'hashicorp/terraform:1.0.0'
     args: ['plan', '-out=tfplan']
-
     env:
     - "TF_VAR_project-name=corded-shift-399205"
   - name: 'hashicorp/terraform:1.0.0'
-    args: ['apply', 'tfplan' ]
-    -  'state-out=cloudbuild.tfstate 
+    args: ['apply', 'tfplan', 'state-out=cloudbuild.tfstate' ]
     env:
     - "TF_VAR_project-name=corded-shift-399205"
       #substitutions:
