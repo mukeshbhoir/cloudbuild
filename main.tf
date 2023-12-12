@@ -33,4 +33,3 @@ resource "google_compute_instance" "computevm1" {
     }
   }
 }
-
