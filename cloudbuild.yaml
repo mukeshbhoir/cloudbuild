@@ -1,17 +1,13 @@
 steps:
   - name: 'hashicorp/terraform:1.6.3'
     args: ['init']
-    env:
-    - "TF_VAR_project-name=corded-shift-399205"
+  - name: 'hashicorp/terraform:1.6.3'
+    args: ['fmt']
+  - name: 'hashicorp/terraform:1.6.3'
+    args: ['reset']
   - name: 'hashicorp/terraform:1.6.3'
     args: ['plan', '-out=tfplan']
-    env:
-    - "TF_VAR_project-name=corded-shift-399205"
   - name: 'hashicorp/terraform:1.6.3'
     args: ['destroy']
     env:
     - "TF_STATE_OUT=cloudbuild.tfstate"
-      #substitutions:
-      #_BUCKET: terraformbuckettest
-tags: ['cloud-builders-community']
-
