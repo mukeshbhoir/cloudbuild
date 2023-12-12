@@ -4,7 +4,7 @@ steps:
   - name: 'hashicorp/terraform:1.6.3'
     args: ['fmt']
   - name: 'hashicorp/terraform:1.6.3'
-    args: ['reset']
+    args: ['refresh']
   - name: 'hashicorp/terraform:1.6.3'
     args: ['plan', '-out=tfplan']
   - name: 'hashicorp/terraform:1.6.3'
