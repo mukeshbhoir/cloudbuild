@@ -12,7 +12,7 @@ steps:
     env:
     - "TF_VAR_project-name=corded-shift-399205"
   - name: 'hashicorp/terraform:1.0.0'
-    args: ['apply', '-auto-approve']
+    args: ['destroy', '-auto-approve']
     env:
     - "TF_VAR_project-name=corded-shift-399205"
 substitutions:
