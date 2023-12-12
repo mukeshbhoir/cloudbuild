@@ -23,8 +23,6 @@ resource "google_compute_instance" "computevm1" {
     network = "terraform-network"
     subnetwork = "mumbai-subnet-1"
     #network_ip = "200.0.5.15"
-    access_config {
-    }
   }
   boot_disk {
     initialize_params {
