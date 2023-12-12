@@ -9,15 +9,15 @@ resource "google_compute_network" "terraform_network" {
   description             = "This is Testing Vpc"
 }
         
-resource "google_compute_subnetwork" "mum-subnet-1" {
+resource "google_compute_subnetwork" "mumbai-subnet-1" {
   name          = "mumbai-subnet-1"
-  ip_cidr_range = "200.0.1.0/24"
+  ip_cidr_range = "200.0.5.0/24"
   region        = "asia-south1"
   network       = google_compute_network.terraform_network.id
 }
   resource "google_compute_subnetwork" "delhi-subnet-1" {
-  name          = "delhi-subnet"
-  ip_cidr_range = "200.0.2.0/24"
+  name          = "delhi-subnet-1"
+  ip_cidr_range = "200.0.6.0/24"
   region        = "asia-south2"
   network       = google_compute_network.terraform_network.id
 }
@@ -44,12 +44,11 @@ resource "google_compute_firewall" "allow-internal" {
    allow {
   protocol = "icmp"
   }
-  source_ranges = ["200.0.0.0/24", "200.0.1.0/24" ]
+  source_ranges = ["200.0.5.0/24", "200.0.6.0/24" ]
 }
 
-##VM CREATION###
 
-resource "google_compute_address" "static1" {
+resource "google_compute_address" "ephemeral" {
   name = "ipv4-address"
   region  = "asia-south1"
 }
@@ -63,9 +62,9 @@ resource "google_compute_instance" "computevm1" {
   network_interface {
     network = "terraform-network"
     subnetwork = "mumbai-subnet-1"
-    network_ip = "200.0.1.10"
+    network_ip = "200.0.5.15"
     access_config {
-    nat_ip = google_compute_address.static1.address
+    nat_ip = google_compute_address.ephemeral.address
     }
   }
   boot_disk {
@@ -75,38 +74,4 @@ resource "google_compute_instance" "computevm1" {
     }
   }
 }
-
-
-#provider "google" {
-#  project = "corded-shift-399205"
-#  region  = "asia-south1"
-#}
-resource "google_compute_address" "static2" {
-  name = "ipv4-address2"
-  region  = "asia-south2"
-}
-
-resource "google_compute_instance" "computevm2" {
-  name                      = "test-vm2"
-  zone                      = "asia-south2-a"
-  machine_type              = "e2-micro"
-
-  network_interface {
-    network = "terraform-network"
-    subnetwork = "delhi-subnet"
-    network_ip = "200.0.2.10"
-    access_config {
-#    nat_ip = google_compute_address.static2.address
-    }
-  }
-  boot_disk {
-    initialize_params {
-      image = "centos-cloud/centos-7"
-      size  = 20
-    }
-  }
-}
-
-
-
 
