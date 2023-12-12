@@ -4,14 +4,15 @@ steps:
     env:
     - "TF_VAR_project-name=corded-shift-399205"
   - name: 'hashicorp/terraform:1.0.0'
-    args: ['plan']
+    args: ['plan', 'out=tfplan']
+
     env:
     - "TF_VAR_project-name=corded-shift-399205"
   - name: 'hashicorp/terraform:1.0.0'
-    args: ['destroy', '-auto-approve']
+    args: ['apply', 'tfplan', '-auto-approve']
     env:
     - "TF_VAR_project-name=corded-shift-399205"
-substitutions:
-    _BUCKET: terraformbuckettest
+      #substitutions:
+      #_BUCKET: terraformbuckettest
 tags: ['cloud-builders-community']
 
