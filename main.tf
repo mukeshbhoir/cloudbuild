@@ -3,18 +3,18 @@ provider "google" {
   region  = "asia-south1"
 }
 
-#resource "google_compute_network" "terraform_network" {
-##  name                    = "terraform-network"
- # auto_create_subnetworks = "false"
- # description             = "This is Testing Vpc"
-#}
+resource "google_compute_network" "terraform_network" {
+  name                    = "terraform-network"
+  auto_create_subnetworks = "false"
+  description             = "This is Testing Vpc"
+}
         
-#resource "google_compute_subnetwork" "mumbai-subnet-1" {
-#  name          = "mumbai-subnet-1"
-#  ip_cidr_range = "200.0.5.0/24"
-#  region        = "asia-south1"
-#  network       = google_compute_network.terraform_network.id
-#}
+resource "google_compute_subnetwork" "mumbai-subnet-1" {
+  name          = "mumbai-subnet-1"
+  ip_cidr_range = "200.0.5.0/24"
+  region        = "asia-south1"
+  network       = google_compute_network.terraform_network.id
+}
 
 resource "google_compute_instance" "computevm1" {
   name                      = "test-vm1"
