@@ -1,10 +1,10 @@
 steps:
   - name: 'hashicorp/terraform:1.0.0'
-    args: ['refresh']
+    args: ['init']
     env:
     - "TF_VAR_project-name=corded-shift-399205"
   - name: 'hashicorp/terraform:1.0.0'
-    args: ['init']
+    args: ['refresh']
     env:
     - "TF_VAR_project-name=corded-shift-399205"
   - name: 'hashicorp/terraform:1.0.0'
