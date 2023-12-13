@@ -1,4 +1,6 @@
 steps:
+  - name: 'gcr.io/cloud-builders/git'
+    args: ['clone', 'https://github.com/mukeshbhoir/vpc_creation.git']
   - name: 'hashicorp/terraform:1.6.3'
     args: ['init', '-reconfigure',
      '-backend-config=project=${PROJECT_ID}',
