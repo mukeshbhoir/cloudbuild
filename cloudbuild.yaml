@@ -1,14 +1,15 @@
 steps:
   - name: 'hashicorp/terraform:1.6.3'
-    args: ['init']
-    '-backend-config=project=${PROJECT_ID}',
-    '-backend-config=bucket=${_BUCKET}']
+    args: ['init',
+     '-backend-config=project=${PROJECT_ID}',
+     '-backend-config=bucket=${_BUCKET}']
   - name: 'hashicorp/terraform:1.6.3'
     args: ['plan', '-out=tfplan']
   - name: 'hashicorp/terraform:1.6.3'
     args: ['apply', 'tfplan']
     env:
     - "TF_STATE_OUT=cloudbuild.tfstate"
-  substitutions:
-      _BUCKET: mukeshbhoir199222 
-  tags: ['cloud-builders-community']
+    substitutions:
+      _BUCKET: mukeshbhoir199222
+    tags: ['cloud-builders-community']
+
