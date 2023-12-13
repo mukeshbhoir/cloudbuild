@@ -6,7 +6,7 @@ steps:
      '-backend-config=project=${PROJECT_ID}',
      '-backend-config=bucket=mukeshbhoir199222']
   - name: 'hashicorp/terraform:1.6.3'
-    args: ['plan', '-out=tfplan']
+    args: ['plan', '-out=tfplan', 'refresh' ]
   - name: 'hashicorp/terraform:1.6.3'
     args: ['apply', 'tfplan']
     env:
