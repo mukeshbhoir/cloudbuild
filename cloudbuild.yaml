@@ -6,7 +6,7 @@ steps:
      '-backend-config=project=${PROJECT_ID}',
      '-backend-config=bucket=mukeshbhoir199222']
   - name: 'hashicorp/terraform:1.6.3'
-    args: ['import'}
+    args: ['import']
   - name: 'hashicorp/terraform:1.6.3'
     args: ['plan', '-out=tfplan']
   - name: 'hashicorp/terraform:1.6.3'
