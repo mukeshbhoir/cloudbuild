@@ -39,8 +39,8 @@ resource "google_compute_instance" "computevm1" {
   }
 }
 
-resource "google_compute_instance" "computevm2" {
-  name                      = "test-vm2"
+resource "google_compute_instance" "computevm3" {
+  name                      = "test-vm3"
   zone                      = "asia-south2-a"
   machine_type              = "e2-micro"
 
