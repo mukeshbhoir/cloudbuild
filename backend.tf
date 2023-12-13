@@ -1,6 +1,8 @@
 terraform {
-  backend "gcs" {
+  backend "s3" {
     bucket = "mukeshbhoir199222"
-    prefix = "env/dev"
+#    key =  
+    region = "asia-south1" 
+#    prefix = "env/dev"
    }
 }
