@@ -4,6 +4,6 @@ steps:
   - name: 'hashicorp/terraform:1.6.3'
     args: ['plan', '-out=tfplan']
   - name: 'hashicorp/terraform:1.6.3'
-    args: ['apply', '-auto-approve', 'tfplan']
+    args: ['apply', 'tfplan']
     env:
     - "TF_STATE_OUT=cloudbuild.tfstate"
