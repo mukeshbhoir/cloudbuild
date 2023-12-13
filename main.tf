@@ -47,7 +47,24 @@ resource "google_compute_instance" "computevm3" {
   network_interface {
     network = "terraform-network"
     subnetwork = "delhi-subnet-1"
-    #network_ip = "200.0.6.15"
+    #network_ip = "200.0.6.16"
+  }
+  boot_disk {
+    initialize_params {
+      image = "centos-cloud/centos-7"
+      size  = 20
+    }
+  }
+}
+resource "google_compute_instance" "computevm4" {
+  name                      = "test-vm4"
+  zone                      = "asia-south1-a"
+  machine_type              = "e2-micro"
+
+  network_interface {
+    network = "terraform-network"
+    subnetwork = "mumbai-subnet-1"
+    #network_ip = "200.0.5.16"
   }
   boot_disk {
     initialize_params {
