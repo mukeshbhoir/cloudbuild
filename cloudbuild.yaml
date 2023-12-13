@@ -3,6 +3,10 @@ steps:
     args: ['init',
      '-backend-config=project=${PROJECT_ID}',
      '-backend-config=bucket=mukeshbhoir199222']
+    logsBucket: 'mukeshbhoir199222'
+    serviceAccount: 'projects/corded-shift-399205/serviceAccounts/cloudbuild-service@corded-shift-399205.iam.gserviceaccount.com'
+    options:
+    logging: GCS_ONLY
   - name: 'hashicorp/terraform:1.6.3'
     args: ['plan', '-out=tfplan']
   - name: 'hashicorp/terraform:1.6.3'
