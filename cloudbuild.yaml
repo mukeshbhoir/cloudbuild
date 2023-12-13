@@ -14,5 +14,3 @@ steps:
       #tags: ['cloud-builders-community']
     logsBucket: gs://mukeshbhoir199222
     serviceAccount: "projects/corded-shift-399205/serviceAccounts/806127062353-compute@developer.gserviceaccount.com"
-    options: {
-     logging: "GCS_ONLY" }
