@@ -1,6 +1,6 @@
 steps:
   - name: 'hashicorp/terraform:1.6.3'
-    args: ['init',
+    args: ['init', '-reconfigure',
      '-backend-config=project=${PROJECT_ID}',
      '-backend-config=bucket=mukeshbhoir199222']
   - name: 'hashicorp/terraform:1.6.3'
