@@ -3,11 +3,9 @@ steps:
     args: ['clone', 'https://github.com/mukeshbhoir/vpc_creation.git']
   - name: 'hashicorp/terraform:1.6.3'
     args: ['init']
-    #     '-backend-config=project=${PROJECT_ID}',
-    # '-backend-config=bucket=mukeshbhoir199222']
   - name: 'hashicorp/terraform:1.6.3'
     args: ['plan', '-out=tfplan']
   - name: 'hashicorp/terraform:1.6.3'
-    args: ['destroy', '-auto-approve']
+    args: ['apply', 'tfplan']
     env:
     - "TF_STATE_OUT=cloudbuild.tfstate"
